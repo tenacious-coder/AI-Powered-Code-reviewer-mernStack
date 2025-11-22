@@ -1,0 +1,14 @@
+const { GoogleGenerativeAI } = require("@google/generative-ai");
+
+const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_KEY);
+
+async function generateContent(prompt) {
+  const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+
+  const result = await model.generateContent(prompt);
+  const response = result.response;
+
+  return response.text();
+}
+
+module.exports = generateContent;
